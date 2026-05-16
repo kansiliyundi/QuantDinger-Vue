@@ -10,6 +10,9 @@ ARG NGINX_IMAGE=nginx:1.25-alpine
 FROM ${NODE_IMAGE} AS builder
 WORKDIR /app
 
+# git is needed by git-revision-webpack-plugin at build time.
+RUN apk add --no-cache git
+
 COPY package*.json ./
 RUN npm install --legacy-peer-deps --no-audit --no-fund
 
