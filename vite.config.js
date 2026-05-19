@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
         // moment 纯 CJS（module.exports = ctor），Vite 下 `import * as moment from 'moment'`
         // namespace 拿不到 isMoment 等静态方法 → 走 shim 平铺 named exports
         { find: /^moment$/, replacement: fileURLToPath(new URL('./src/shims/moment.js', import.meta.url)) },
+        { find: /^store$/, replacement: 'store/dist/store.modern.js' },
         { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
         { find: '@$', replacement: fileURLToPath(new URL('./src', import.meta.url)) }
       ],
@@ -102,7 +103,6 @@ export default defineConfig(({ mode }) => {
             'ant-design-vue': ['ant-design-vue'],
             echarts: ['echarts'],
             klinecharts: ['klinecharts'],
-            'lightweight-charts': ['lightweight-charts'],
             codemirror: ['codemirror']
           }
         }
